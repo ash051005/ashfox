@@ -1,0 +1,20 @@
+<?xml version="1.0"?> 
+<sharpUpdate> 
+    <update> 
+        <version>4.0.0.0</version> 
+        <url>https://www.dropbox.com/s/nvbrhdatr9gjn96/setup.exe?dl=0</url> 
+        <filePath>./setup.exe?dl=0</filePath>
+        <md5>F16F9270971EAEAE8E313B32E8FF0814</md5>
+        <description>Update: 10/06/2018:
+        1. Updated a label.</description> 
+        <launchArgs></launchArgs> 
+    </update>
+    <add> 
+        <version>4.0.0.0</version> 
+        <url>https://www.dropbox.com/s/1w6n4x8455q4p8l/Setup.msi?dl=0</url> 
+        <filePath>/Setup.msi?dl=0</filePath>
+        <md5>F16598552595g5re95r9h5trh95tr9rt5h9</md5>
+        <description></description> 
+        <launchArgs></launchArgs> 
+    </add>
+</sharpUpdate>
