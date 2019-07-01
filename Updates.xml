@@ -2,8 +2,8 @@
 <sharpUpdate> 
     <update> 
         <version>4.0.0.0</version> 
-        <url>https://www.dropbox.com/s/nvbrhdatr9gjn96/setup.exe?dl=0</url> 
-        <filePath>./setup.exe?dl=0</filePath>
+        <url>https://github.com/ash051005/ashfox/raw/master/setup.exe</url> 
+        <filePath>./setup.exe</filePath>
         <md5>F16F9270971EAEAE8E313B32E8FF0814</md5>
         <description>Update: 10/06/2018:
         1. Updated a label.</description> 
