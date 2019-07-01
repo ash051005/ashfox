@@ -11,8 +11,8 @@
     </update>
     <add> 
         <version>4.0.0.0</version> 
-        <url>https://www.dropbox.com/s/1w6n4x8455q4p8l/Setup.msi?dl=0</url> 
-        <filePath>/Setup.msi?dl=0</filePath>
+        <url>https://github.com/ash051005/ashfox/raw/master/Setup.msi</url> 
+        <filePath>./Setup.msi</filePath>
         <md5>F16598552595g5re95r9h5trh95tr9rt5h9</md5>
         <description></description> 
         <launchArgs></launchArgs> 
