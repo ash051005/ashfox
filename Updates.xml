@@ -1,7 +1,7 @@
 <?xml version="5.0"?> 
 <sharpUpdate> 
     <update> 
-        <version>5.0.0</version> 
+        <version>3.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/blob/master/setup.exe</url> 
         <filePath>./setup.exe</filePath>
         <md5>241326B6388932A350DDF7C1785C315E</md5>
@@ -10,7 +10,7 @@
         <launchArgs></launchArgs> 
     </update>
         <add> 
-        <version>5.0.0</version> 
+        <version>3.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/blob/master/Setup.msi</url> 
         <filePath>./Setup.msi</filePath>
         <md5>00D4D55B32D573317349E3B8CA15CF5A</md5>
