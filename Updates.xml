@@ -18,7 +18,7 @@
         1. Updated a label.</description> 
         <launchArgs></launchArgs> 
     </add>
-     <add> 
+     <Update> 
         <version>1.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/raw/master/SharpUpdate.dll</url> 
         <filePath>./SharpUpdate.dll</filePath>
