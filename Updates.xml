@@ -2,8 +2,8 @@
 <sharpUpdate> 
     <update> 
         <version>5.0.0.0</version> 
-        <url>https://github.com/ash051005/ashfox/blob/master/setup.exe</url> 
-        <filePath>./setup.exe</filePath>
+        <url>https://github.com/ash051005/ashfox/blob/master/WorkoutApp.exe</url> 
+        <filePath>./WorkoutApp.exe</filePath>
         <md5>241326B6388932A350DDF7C1785C315E</md5>
         <description>Update: 10/06/2018:
         1. Updated a label.</description> 
