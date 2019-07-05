@@ -1,0 +1,521 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GithubUpdater</name>
+    </assembly>
+    <members>
+        <member name="T:GithubUpdater.DownloadProgress">
+            <summary>
+            The progression of a download.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.DownloadProgress.NumberOfBytesTotal">
+            <summary>
+            Total nb of bytes that needs to be exchanged.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.DownloadProgress.NumberOfBytesDoneTotal">
+            <summary>
+            The nb of bytes already exchanged.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.GitHub.Exceptions.GithubFailedRequestException">
+            <summary>
+            Exception thrown on response problems from github.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.GitHub.GitHubAsset">
+            <summary>
+            Represents an asset (i.e. artifact) of a github release.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.BrowserDownloadUrl">
+            <summary>
+            The url at which to download the asset.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.Name">
+            <summary>
+            File name of the asset.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.Label">
+            <summary>
+            Short description of the asset.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.State">
+            <summary>
+            State of the asset.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.ContentType">
+            <summary>
+            Html content type of the asset (for instance application/zip).
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.Size">
+            <summary>
+            Size in bytes.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.DownloadCount">
+            <summary>
+            Number of downloads.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.CreatedAt">
+            <summary>
+            Date of the creation.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubAsset.UpdatedAt">
+            <summary>
+            Date of the last update.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.GitHub.GitHubRelease">
+            <summary>
+            Represents a github release.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.HtmlUrl">
+            <summary>
+            The url to check this release on a web browser.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.ZipballUrl">
+            <summary>
+            Url of the zip containing the source code
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.TagName">
+            <summary>
+            Release version
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.TargetCommitish">
+            <summary>
+            Targeted branch
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.Name">
+            <summary>
+            Release name
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.Body">
+            <summary>
+            content of the release text
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.Draft">
+            <summary>
+            Is this a draft of a release?
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.Prerelease">
+            <summary>
+            Is this a pre-release?
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.CreatedAt">
+            <summary>
+            Date of the creation of this release.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.PublishedAt">
+            <summary>
+            Dat of the publication of this release.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubRelease.Assets">
+            <summary>
+            List of assets (i.e. artifacts) for this release.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.GitHub.GitHubUpdater">
+            <summary>
+            A github updater.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.SetRepo(System.String,System.String)">
+            <summary>
+            Sets the repo owner/name to use for this updater.
+            </summary>
+            <param name="repoOwner"></param>
+            <param name="repoName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseMaxNumberOfReleasesToFetch(System.Int32)">
+            <summary>
+            Only fetch a max number of releases when checking updates instead of getting everything. Allows lighter network traffic.
+            </summary>
+            <param name="maxNumberOfReleasesToFetch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseProxy(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Use an http proxy for the update.
+            </summary>
+            <remarks>
+            If you intend to use a locally served proxy, don't use 127.0.0.1 or localhost but use your machine name instead.
+            That is because .net framework is hardcoded to not sent req for localhost through the proxy.
+            </remarks>
+            <param name="address">Can be null for a null proxy.</param>
+            <param name="userName">domain\user. Can be null if no credentials are needed.</param>
+            <param name="userPassword"></param>
+            <param name="bypassProxyOnLocal"></param>
+            <param name="sendProxyAuthorizationBeforeServerChallenge">Send the proxy-authorization header before the 407 challenge from the proxy server.</param>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseAuthorizationToken(System.String)">
+            <summary>
+            Use an OAuth token for authentication to the github api (user:token). Generate a token at https://github.com/settings/tokens.
+            See https://developer.github.com/v3/ for more help.
+            If you are using anonymous requests, mind the limits of the api.
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseTimeout(System.Int32,System.Int32)">
+            <summary>
+            Sets a timeout for the http request. Defaults to infinite. You can also use <see cref="M:GithubUpdater.GitHub.GitHubUpdater.UseCancellationToken(System.Nullable{System.Threading.CancellationToken})"/> for that purpose.
+            </summary>
+            <param name="timeOut"></param>
+            <param name="readWriteTimeOut"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseBufferSize(System.Int32)">
+            <summary>
+            Sets the buffer size to use for requests/downloads.
+            </summary>
+            <param name="bufferSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseAlternativeBaseUrl(System.String)">
+            <summary>
+            Sets the base url for the request. Defaults to github api, change only if you host your own service.
+            </summary>
+            <param name="baseUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.UseCancellationToken(System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+            Sets a cancellation token for the request.
+            </summary>
+            <param name="cancelToken"></param>
+            <returns></returns>
+        </member>
+        <member name="P:GithubUpdater.GitHub.GitHubUpdater.MaxNumberOfReleasesToFetch">
+            <summary>
+            Get the max number of releases to fetch for each update check.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.GetReleaseApiRelativeUrl">
+            <summary>
+            The relative url path to use to request the releases list.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.FetchNewReleases(System.Func{GithubUpdater.GitHub.GitHubRelease,System.Boolean},System.Func{GithubUpdater.GitHub.GitHubRelease,System.Object})">
+            <summary>
+            Returns a list of new releases based on the given predicate. Can also sort the releases.
+            </summary>
+            <param name="isNewReleasePredicate"></param>
+            <param name="orderBySelector"></param>
+            <returns></returns>
+            <exception cref="T:GithubUpdater.GitHub.Exceptions.GithubFailedRequestException"></exception>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.FetchNewReleases(System.Version)">
+            <summary>
+            Returns a list of new releases based on the local version versus the tag version of distant releases.
+            The returned list is sorted by descending order, the first release being the most up-to-date.
+            </summary>
+            <param name="localVersion">See <see cref="M:GithubUpdater.UpdaterHelper.StringToVersion(System.String)"/> to get the version from a string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.GitHub.GitHubUpdater.DownloadToTempFile(System.String,System.Action{GithubUpdater.DownloadProgress})">
+            <summary>
+            Downloads a file to a temporary file and return its location.
+            </summary>
+            <param name="urlToDownload"></param>
+            <param name="progress"></param>
+            <returns></returns>
+            <exception cref="T:GithubUpdater.GitHub.Exceptions.GithubFailedRequestException"></exception>
+        </member>
+        <member name="T:GithubUpdater.Http.HttpAuthorizationType">
+            <summary>
+            Authorization header type.
+            </summary>
+        </member>
+        <member name="F:GithubUpdater.Http.HttpAuthorizationType.Basic">
+            <summary>
+            Basic auth.
+            </summary>
+        </member>
+        <member name="F:GithubUpdater.Http.HttpAuthorizationType.Bearer">
+            <summary>
+            Bearer token.
+            </summary>
+        </member>
+        <member name="F:GithubUpdater.Http.HttpAuthorizationType.Token">
+            <summary>
+            Token, used for the github api.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.Http.HttpRequest">
+            <summary>
+            Handles http requests.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="baseUrl"></param>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseProxy(System.String,System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Use an http proxy for your requests.
+            </summary>
+            <remarks>
+            If you intend to use a locally served proxy, don't use 127.0.0.1 or localhost but use your machine name instead.
+            That is because .net framework is hardcoded to not sent req for localhost through the proxy.
+            </remarks>
+            <param name="address">Can be null for a null proxy.</param>
+            <param name="userName">domain\user. Can be null if no credentials are needed.</param>
+            <param name="userPassword"></param>
+            <param name="bypassProxyOnLocal"></param>
+            <param name="sendProxyAuthorizationBeforeServerChallenge">Send the proxy-authorization header before the 407 challenge from the proxy server.</param>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseAuthorizationHeader(GithubUpdater.Http.HttpAuthorizationType,System.String)">
+            <summary>
+            Sets an authorization header.
+            </summary>
+            <param name="authorizationType"></param>
+            <param name="credentials"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseTimeout(System.Int32,System.Int32)">
+            <summary>
+            Sets a timeout for the http request. Defaults to infinite. You can also use <see cref="M:GithubUpdater.Http.HttpRequest.UseCancellationToken(System.Nullable{System.Threading.CancellationToken})"/> for that purpose.
+            </summary>
+            <param name="timeOut"></param>
+            <param name="readWriteTimeOut"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseBufferSize(System.Int32)">
+            <summary>
+            Sets the buffer size to use for the request.
+            </summary>
+            <param name="bufferSize"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseBaseUrl(System.String)">
+            <summary>
+            Sets the base url for the request.
+            </summary>
+            <param name="baseUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseCancellationToken(System.Nullable{System.Threading.CancellationToken})">
+            <summary>
+            Sets a cancellation token for the request.
+            </summary>
+            <param name="cancelToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseBasicAuthorizationHeader(System.String,System.String,System.Boolean)">
+            <summary>
+            Sets a Basic authorization for the request.
+            </summary>
+            <param name="userName"></param>
+            <param name="userPassword"></param>
+            <param name="sendAuthorizationBeforeServerChallenge">Send the authorization header before receiving the 401 challenge from the server.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseHeaders(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Sets extra headers to use for the request
+            </summary>
+            <param name="headersKeyValue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.UseHeader(System.String,System.String)">
+            <summary>
+            Set header to use for the request.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.ClearAllHeaders">
+            <summary>
+            Clear all the headers defined.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.GetJson``1(System.String,``0@)">
+            <summary>
+            Get the response from a webservice that sends back json.
+            </summary>
+            <param name="relativePath"></param>
+            <param name="output"></param>
+            <typeparam name="TOutput"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.RequestJson``2(GithubUpdater.Http.HttpRequestMethod,System.String,``0,``1@)">
+            <summary>
+            Make a request to a webservice that accepts and sends back json.
+            </summary>
+            <param name="method"></param>
+            <param name="relativePath"></param>
+            <param name="input"></param>
+            <param name="output"></param>
+            <typeparam name="TInput"></typeparam>
+            <typeparam name="TOutput"></typeparam>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:GithubUpdater.Http.HttpRequest.DownloadFile(System.String,System.String,System.Action{GithubUpdater.DownloadProgress})">
+            <summary>
+            Download a file from the server, handles progression.
+            </summary>
+            <param name="relativePath"></param>
+            <param name="downloadFilePath"></param>
+            <param name="progress"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GithubUpdater.Http.HttpRequestMethod">
+            <summary>
+            Represents an http method.
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.Http.HttpResponse">
+            <summary>
+            A response from an http web request.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Http.HttpResponse.Success">
+            <summary>
+            Was the request successful?
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Http.HttpResponse.StatusCode">
+            <summary>
+            Status code of the request, use this to know if it went ok
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Http.HttpResponse.StatusDescription">
+            <summary>
+            Status description of the request
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Http.HttpResponse.Exception">
+            <summary>
+            Exception caught during the request, will be null if all went ok
+            </summary>
+        </member>
+        <member name="T:GithubUpdater.Resources.Resources">
+            <summary>
+            Resources.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.Resources.Resources.WriteSimpleFileUpdateFile(System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Write the embedded files.
+            </summary>
+            <param name="coreVersion"></param>
+            <param name="adminVersion"></param>
+            <param name="directoryPath"></param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:GithubUpdater.SimpleFileUpdater">
+            <summary>
+            A simple file updater that allows to move files or start a process after the current program has been executed.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.SimpleFileUpdater.Instance">
+            <summary>
+            Get the singleton instance of the updater.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.SimpleFileUpdater.#ctor">
+            <summary>
+            new instance.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.SimpleFileUpdater.IsAdminRightsNeeded">
+            <summary>
+            Will the updater need admin rights to do its job?
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.SimpleFileUpdater.TryToCleanLastExe">
+            <summary>
+            Try to clean up the exe used in a previous update.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.SimpleFileUpdater.AddProgramExecution(System.String,System.String)">
+            <summary>
+            Allows to execute a program during the update.
+            </summary>
+            <param name="pathToExe"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.SimpleFileUpdater.AddFileToMove(System.String,System.String)">
+            <summary>
+            Allows to move a file during the update.
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GithubUpdater.SimpleFileUpdater.Start(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Starts the updater, it will wait for the given process (defaults to current process) to end before starting its business.
+            </summary>
+            <param name="pidToWait"></param>
+            <param name="delayBeforeActionInMilliseconds"></param>
+        </member>
+        <member name="T:GithubUpdater.UpdaterHelper">
+            <summary>
+            Helper class for the updater.
+            </summary>
+        </member>
+        <member name="M:GithubUpdater.UpdaterHelper.StringToVersion(System.String)">
+            <summary>
+            Converts a valid version string to a version object. (vX.X.X.X-suffix)
+            </summary>
+            <param name="versionString"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GithubUpdater.Utilities.DotNet">
+            <summary>
+            Utilities for finding the "dotnet.exe" file from the currently running .NET Core application.
+            Credits go to: https://github.com/natemcmaster/CommandLineUtils.
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Utilities.DotNet.FullPath">
+            <summary>
+            The full filepath to the .NET Core CLI executable.
+            <para>
+            May be <c>null</c> if the CLI cannot be found. <seealso cref="M:GithubUpdater.Utilities.DotNet.FullPathOrDefault" />
+            </para>
+            </summary>
+            <returns>The path or null</returns>
+        </member>
+        <member name="M:GithubUpdater.Utilities.DotNet.FullPathOrDefault">
+            <summary>
+            Finds the full filepath to the .NET Core CLI executable,
+            or returns a string containing the default name of the .NET Core muxer ('dotnet').
+            <returns>The path or a string named 'dotnet'</returns>
+            </summary>
+        </member>
+        <member name="P:GithubUpdater.Utilities.DotNet.IsNetStandardBuild">
+            <summary>
+            Returns true if the current executable targets .net core.
+            </summary>
+        </member>
+    </members>
+</doc>
