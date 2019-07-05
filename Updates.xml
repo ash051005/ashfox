@@ -21,7 +21,7 @@
      <add> 
         <version>1.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/raw/master/SharpUpdate.dll</url> 
-        <filePath>./test_add/SharpUpdate_test_add.dll</filePath>
+        <filePath>./SharpUpdate.dll</filePath>
         <md5>88237737FECE6C41EF6CD10AE4DC54C0</md5>
         <description>Add: 10/06/2018:
         1. Test add.</description> 
