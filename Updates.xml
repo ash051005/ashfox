@@ -10,7 +10,7 @@
         <launchArgs></launchArgs> 
     </update>
         <add> 
-        <version>1.0.0.0</version> 
+        <version>5.0.0.0</version> 
         <url>https://raw.githubusercontent.com/ash051005/ashfox/master/LiteDB.xml</url> 
         <filePath>./LiteDB.xml</filePath>
         <md5>00D4D55B32D573317349E3B8CA15CF5A</md5>
@@ -19,7 +19,7 @@
         <launchArgs></launchArgs> 
     </Update>
      <Update> 
-        <version>1.0.0.0</version> 
+        <version>5.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/raw/master/SharpUpdate.dll</url> 
         <filePath>./SharpUpdate.dll</filePath>
         <md5>88237737FECE6C41EF6CD10AE4DC54C0</md5>
@@ -28,7 +28,7 @@
         <launchArgs></launchArgs> 
     </Update>
     <Update>
-                <version>1.0.0.0</version> 
+                <version>5.0.0.0</version> 
         <url>https://github.com/ash051005/ashfox/raw/master/LiteDB.dll</url> 
         <filePath>./LiteDB.dll</filePath>
         <md5>88237737FECE6C41EF6CD10AE4DC54C0</md5>
